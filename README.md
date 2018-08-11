@@ -1,4 +1,4 @@
-Computer Graphics - Homework Assignment 2 - Raytracing
+Computer Graphics - Homework Assignment 3 - Raytracing
 ======================================================
 
 Goals:
