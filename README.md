@@ -18,8 +18,8 @@ Getting Started & Handing In:
 -----------------------------
 
 * This project builds off of your [raycasting](https://github.com/yig/graphics101-raycasting) homework. There is no new
-code to download. There are new raytraced outputs for the `.json` scenes
-and two new optional scenes which make use of refraction.
+code to download. You will augment your existing codebase to generate
+*raytraced* output for the `.json` scenes.
 
 * You will be fleshing out `Scene::rayColor()` to implement a Phong lighting
 model with shadows, reflections, and (optionally) refractions. You will
