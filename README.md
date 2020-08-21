@@ -1,6 +1,24 @@
 Computer Graphics - Homework Assignment 3 - Raytracing
 ======================================================
 
+Overview:
+---------
+
+In this assignment, you will be implementing a ray tracer which supports
+Phong lighting, shadows, reflections, and optionally refractions. You
+will be able to create stunning artwork like
+this:
+
+![solid color spheres and a cylinder](docs/spheres_cylinder.png)
+
+The assignment is broken down into parts: (1) computing accurate normals
+for ray/shape intersections, (2) computing direct illumination (a local
+Phong lighting model with ambient, diffuse, and specular lighting), (3)
+computing global illumination effects (shadows, reflections, and,
+optionally, refractions).
+
+Background reading for this assignment: Chapter 10 *Surface Shading* and, for the bonus, Chapter 13.1 *Transparency and Refraction* and Chapter 11 *Texture Mapping* from *Fundamentals of Computer Graphics (4th edition)* by Steve Marschner and Peter Shirley.
+
 Goals:
 ------
 
@@ -45,14 +63,16 @@ also revisit `Shape::rayIntersect()` to fill out `Intersection.position` and
     * (optional) `refraction.json`
     * (optional) `refraction_inside.json`
 
-* When done, zip your entire `raycasting` directory, including the `test/`
-subdirectory containing the scenes and your program's output on them
-with the `long_edge_pixels` command line parameter set to 600, and a
-*Notes.txt* file. Name the zip file *hw03_lastname_firstname.zip.*
-Upload your solution to Blackboard before the deadline. Your
-*Notes.txt* should describe any known issues or extra features. Your
-*Notes.txt* should also note the names of people in the class who
-deserve a star for helping you (not by giving your their code!).
+* You are encouraged to share blooper images you create while implementing the assignment on Piazza.
+
+* Create a file named `Notes.txt` in the folder. Describe any known issues or extra features. Name people in the class who deserve a star for
+helping you (not by giving your their code!).
+
+* When done, zip your entire `raycasting` directory, including your `Notes.txt`
+and the `test/` subdirectory containing the scenes and your program's output on
+them with the `long_edge_pixels` command line parameter set to 600. Name the zip
+file `hw03_lastname_firstname.zip`. Upload your solution to Blackboard before
+the deadline.
 
 * The framework and glm vector math library still provide all the support
 code that you need.
@@ -63,22 +83,6 @@ permitted to consult with each other while working on this assignment,
 code that is substantially the same will be considered cheating.** In your
 `Notes.txt`, please note who deserves a star (who helped you with the
 assignment).
-
-Overview:
----------
-
-In this assignment, you will be implementing a ray tracer which supports
-Phong lighting, shadows, reflections, and optionally refractions. You
-will be able to create stunning artwork like
-this:
-
-![solid color spheres and a cylinder](docs/spheres_cylinder.png)
-
-The assignment is broken down into parts: (1) computing accurate normals
-for ray/shape intersections, (2) computing direct illumination (a local
-Phong lighting model with ambient, diffuse, and specular lighting), (3)
-computing global illumination effects (shadows, reflections, and,
-optionally, refractions).
 
 Rubric
 ------
@@ -105,14 +109,10 @@ gradients points towards the exterior.
 
         * F(x,y,z) = x² + y² + z² - 1
 
-            $$F(x,y,z) = x^2 + y^2 + z^2 - 1$$
-
     * **(5 points)** Plane (the *xy* plane, also known as the
 *z* = 0 plane)
 
         * F(x,y,z) = z
-
-            $$F(x,y,z) = z$$
 
     * **(5 points)** Cylinder (bottom at the origin, top at (0,0,1), radius 1)
 with a top and bottom cap (circles with radius 1 at z=0 and z=1).
@@ -121,12 +121,6 @@ You handle this as a collection of three shapes with conditions:
         * if 0 < z < 1: F(x,y,z) = x² + y² - 1
         * if x² + y² < 1: F(x,y,z) = -z
         * if x² + y² < 1: F(x,y,z) = z-1
-        
-        $$\begin{align}
-        F\_\text{body}(x,y,z) &= x^2 + y^2 - 1 & \text{if}&\quad 0<z<1 \\\\
-        F\_\text{top}(x,y,z) &= z - 1 & \text{if}&\quad x^2+y^2 < 1 \\\\
-        F\_\text{bottom}(x,y,z) &= -z & \text{if}&\quad x^2+y^2 < 1
-        \end{align}$$
 
     * **(5 points)** Cone (bottom at the origin, top at (0,0,1), radius 1 at
 the bottom, radius 0 at the top, with a bottom cap).
@@ -134,11 +128,6 @@ You handle this as a collection of two shapes with conditions:
     
         * if 0 < z ≤ 1: F(x,y,z) = x² + y² - (1 - z)²
         * if x² + y² < 1: F(x,y,z) = -z
-        
-        $$\begin{align}
-        F\_\text{body}(x,y,z) &= x^2 + y^2 - (1-z)^2 & \text{if}&\quad 0<z \leq 1 \\\\
-        F\_\text{bottom}(x,y,z) &= -z & \text{if}&\quad x^2+y^2 < 1
-        \end{align}$$
 
     * **(5 points)** Cube (centered at the origin, with vertices
 ( ±1, ±1, ±1)$). Think of it as six planes:
@@ -149,15 +138,6 @@ You handle this as a collection of two shapes with conditions:
         * if -1 ≤ x,z ≤ 1: F(x,y,z) = -(y+1)
         * if -1 ≤ x,y ≤ 1: F(x,y,z) = z-1
         * if -1 ≤ x,y ≤ 1: F(x,y,z) = -(z+1)
-
-        $$\begin{align}
-        F\_\text{right}(x,y,z)  &= x-1    & \text{if}&\quad -1 \leq y,z \leq 1 \\\\
-        F\_\text{left}(x,y,z)   &= -(x+1) & \text{if}&\quad -1 \leq y,z \leq 1 \\\\
-        F\_\text{top}(x,y,z)    &= y-1    & \text{if}&\quad -1 \leq x,z \leq 1 \\\\
-        F\_\text{bottom}(x,y,z) &= -(y+1) & \text{if}&\quad -1 \leq x,z \leq 1 \\\\
-        F\_\text{front}(x,y,z)  &= z-1    & \text{if}&\quad -1 \leq x,y \leq 1 \\\\
-        F\_\text{back}(x,y,z)   &= -(z+1) & \text{if}&\quad -1 \leq x,y \leq 1
-        \end{align}$$
 
     * **(bonus 5 points)** Mesh (arbitrary triangle meshes)
 
@@ -171,16 +151,8 @@ replaces the stub that you wrote that simply returns
 `Intersection.diffuse_color`. The expression we will be using for the
 color at a point on a surface is:
 
-    ![](docs/illumination.png)
+    ![K_R I_R + K_T I_T + \sum_L \big( K_A I_{AL} + \big[ K_D I_L ( N \cdot L ) + K_S I_L ( V \cdot R )^n  \big] S_L \big)](docs/illumination.png)
     
-    $$K_R I_R + K_T I_T + \sum_L \big( K_A I_{AL} + \big[ K_D I_L ( N \cdot L ) + K_S I_L ( V \cdot R )^n  \big] S_L \big)$$
-
-    *K<sub>R</sub> * I<sub>R</sub> +
-    K<sub>T</sub> * I<sub>T</sub> +
-    sum<sub>L</sub> (
-        K<sub>A</sub> * I<sub>AL</sub>
-        + [ K<sub>D</sub> * I<sub>L</sub> * ( N · L ) + K<sub>S</sub> * I<sub>L</sub> * ( V · R )<sup>n</sup> ] * S<sub>L</sub> )*
-
     In this expression, *K<sub>A</sub>*, *K<sub>D</sub>*, *K<sub>S</sub>*,
 *n*, *K<sub>R</sub>*, and *K<sub>T</sub>*
 refer to `Material.color_ambient`, `.color_diffuse`, `.color_specular`,
@@ -293,7 +265,7 @@ Implementation Details
 
 To reflect a (not necessarily normalized) vector **v** across a
 normalized vector **n**, the formula for the reflected vector **r** is
-**r = -v + 2(v·n)n**.
+**r = v - 2(v·n)n**.
 
 ![Illustration of a vector v reflected across a vector n](docs/reflection.svg)
 
@@ -302,10 +274,7 @@ glm and C/C++ standard library functions you need for this assignment
 
 **glm.** Please consult the Raycasting handout for the basics of
 **glm**. The code particular to raytracing will make use of `transpose(m)`
-and perhaps `clamp(v, minVal, maxVal)` and `reflect(-v,n)`. Note that glm's
-`reflect()` is different than the formula and diagram above. glm's
-`reflect()` takes **v** pointed towards the surface, not away from it
-(that is, negated).
+and perhaps `clamp(v, minVal, maxVal)` and `reflect(v,n)`.
 
 **std::max(a,b)**. This is part of C++'s `<algorithm>`. Note that
 `std::max()` requires both parameters to have the exact same type. If not,
