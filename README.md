@@ -165,15 +165,15 @@ wavelength of light). The other terms will be defined below.
     * For direct illumination, you will implement a local Phong lighting model
 with ambient, diffuse, and specular terms.
 
-        * **(10 points)** Ambient lighting: *K<sub>A</sub> * I<sub>AL</sub>*
+        * **(10 points)** Ambient lighting: *K<sub>A</sub> I<sub>AL</sub>*
 
-        * **(15 point)** Diffuse lighting: *K<sub>D</sub> * I<sub>L</sub> * ( N · L )*.
+        * **(15 point)** Diffuse lighting: *K<sub>D</sub> I<sub>L</sub> ( N · L )*.
 *N* is the (normalized) surface normal vector and *L* is the (normalized) vector
 from the surface position to the light's position. Note that if this dot
 product is negative, then the light is behind the surface and you should
 not add diffuse **or** specular lighting.
 
-        * **(15 points)** Specular lighting: K<sub>S</sub> * I<sub>L</sub> * ( V · R )<sup>n</sup>.
+        * **(15 points)** Specular lighting: K<sub>S</sub> I<sub>L</sub> ( V · R )<sup>n</sup>.
 *V* is the (normalized) vector from the surface position to the "eye"
 position. (Because you are writing a recursive ray tracer, the "eye" in
 this formula should be the position of the ray parameter passed to `rayColor()`.)
