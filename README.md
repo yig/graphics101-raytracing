@@ -130,7 +130,7 @@ You handle this as a collection of two shapes with conditions:
         * if x² + y² < 1: F(x,y,z) = -z
 
     * **(5 points)** Cube (centered at the origin, with vertices
-( ±1, ±1, ±1)$). Think of it as six planes:
+( ±1, ±1, ±1)). Think of it as six planes:
 
         * if -1 ≤ y,z ≤ 1: F(x,y,z) = x-1
         * if -1 ≤ y,z ≤ 1: F(x,y,z) = -(x+1)
