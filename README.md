@@ -177,7 +177,7 @@ not add diffuse **or** specular lighting.
 *V* is the (normalized) vector from the surface position to the "eye"
 position. (Because you are writing a recursive ray tracer, the "eye" in
 this formula should be the position of the ray parameter passed to `rayColor()`.)
-*R* is the (normalized) direction from the surface position to the light
+*R* is the (normalized) direction from the light position to the surface
 position, reflected across the surface normal. The formula for
 reflecting a vector across another vector is given below under
 **Implementation Details**. Note that if the dot product is negative, then
