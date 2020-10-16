@@ -63,6 +63,8 @@ also revisit `Shape::rayIntersect()` to fill out `Intersection.position` and
     * (optional) `refraction.json`
     * (optional) `refraction_inside.json`
 
+* Check your work with the [autograder](https://github.com/yig/graphics101-raytracing-autograder).
+
 * You are encouraged to share blooper images you create while implementing the assignment on Piazza.
 
 * Create a file named `Notes.txt` in the folder. Describe any known issues or extra features. Name people in the class who deserve a star for
