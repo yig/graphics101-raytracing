@@ -48,33 +48,25 @@ also revisit `Shape::rayIntersect()` to fill out `Intersection.position` and
 
 * Build and run and test that it is working correctly.
 
-* Create 600 pixel images for each of the following `.json` scenes. Copy the
-`.json` and your `.png` files into a new `test/` subdirectory.
-
-    * `spheres_cylinder.json`
-    * `cone_cube.json`
-    * `stress_test.json`
-    * `camera_test1.json`
-    * `camera_test2.json`
-    * `orthographic_test1.json`
-    * `orthographic_test2.json`
-    * A `.json` scene that you make yourself (can be the one you made for your
-      raycaster with updated materials or an entirely new one).
-    * (optional) `refraction.json`
-    * (optional) `refraction_inside.json`
-
 * Check your work with the [autograder](https://github.com/yig/graphics101-raytracing-autograder).
+
+* Copy the latest autograder output (`.html` file and associated directory) into a new `output/` subdirectory.
+
+* Create a `.json` scene yourself. It can be the one you made for your raycaster with updated materials or an entirely new scene. Copy it and a `.png` rendering of it into the `output/` subdirectory as well.
 
 * You are encouraged to share blooper images you create while implementing the assignment on Piazza.
 
 * Create a file named `Notes.txt` in the folder. Describe any known issues or extra features. Name people in the class who deserve a star for
 helping you (not by giving your their code!).
 
-* When done, zip your entire `raycasting` directory, including your `Notes.txt`
-and the `test/` subdirectory containing the scenes and your program's output on
-them with the `long_edge_pixels` command line parameter set to 600. Name the zip
-file `hw03_lastname_firstname.zip`. Upload your solution to Blackboard before
-the deadline.
+* When done, run the the `cpack` command from inside your build directory
+to generate an appropriate zip file of your `raycasting` project
+(that is now actually a raytracer).
+The zip file it creates, `raycasting.zip`, will include
+the `output` subdirectory and your `Notes.txt` file.
+It will ignore unneeded large and numerous directories
+(e.g. `build`).
+Upload your `raycasting.zip` before the deadline.
 
 * The framework and glm vector math library still provide all the support
 code that you need.
@@ -82,9 +74,7 @@ code that you need.
 * **THIS IS AN INDIVIDUAL, NOT A GROUP ASSIGNMENT. That means all code
 written for this assignment should be original! Although you are
 permitted to consult with each other while working on this assignment,
-code that is substantially the same will be considered cheating.** In your
-`Notes.txt`, please note who deserves a star (who helped you with the
-assignment).
+code that is substantially the same will be considered cheating.**
 
 Rubric
 ------
