@@ -17,8 +17,6 @@ Phong lighting model with ambient, diffuse, and specular lighting), (3)
 computing global illumination effects (shadows, reflections, and,
 optionally, refractions).
 
-Background reading for this assignment: Chapter 10 *Surface Shading* and, for the bonus, Chapter 13.1 *Transparency and Refraction* and Chapter 11 *Texture Mapping* from *Fundamentals of Computer Graphics (4th edition)* by Steve Marschner and Peter Shirley.
-
 Goals:
 ------
 
@@ -31,6 +29,13 @@ geometric calculations.
 when programming for a GPU).
 
 * Become more comfortable with C++.
+
+Background:
+-------
+
+* Book (FoCG,4e): Chapter 10 *Surface Shading* and, for the bonus, Chapter 13.1 *Transparency and Refraction*, and Chapter 11 *Texture Mapping* from *Fundamentals of Computer Graphics (4th edition)* by Steve Marschner and Peter Shirley.
+* Video: "Lecture 5: Illumination", "Quadratic light attenuation with distance", "Lambert's Cosine Law on a Flat Earth", "Assignment 3: Raytracing", and "Lecture 6: Parameterization".
+
 
 Getting Started & Handing In:
 -----------------------------
