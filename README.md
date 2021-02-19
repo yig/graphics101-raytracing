@@ -33,9 +33,10 @@ when programming for a GPU).
 Background:
 -------
 
-* Book (FoCG,4e): Chapter 10 *Surface Shading* and, for the bonus, Chapter 13.1 *Transparency and Refraction*, and Chapter 11 *Texture Mapping* from *Fundamentals of Computer Graphics (4th edition)* by Steve Marschner and Peter Shirley.
+* Book (FoCG,4e): Chapter 10 *Surface Shading* and, for the bonus, Chapter 13.1 *Transparency and Refraction*, and Chapter 11 *Texture Mapping*.
 * Video: "Lecture 5: Illumination", "Quadratic light attenuation with distance", "Lambert's Cosine Law on a Flat Earth", "Assignment 3: Raytracing", and "Lecture 6: Parameterization".
 
+(FoCG,4e is *Fundamentals of Computer Graphics (4th edition)* by Steve Marschner and Peter Shirley.)
 
 Getting Started & Handing In:
 -----------------------------
