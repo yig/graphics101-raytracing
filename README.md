@@ -252,7 +252,7 @@ All of your changes will be to `Shape::rayIntersect()` (to fill out
 `rayColor()` with a `max_recursion` of whatever your code can handle. A
 value of 3 is sufficient. Also note that the resulting `rayColor()` may be
 very bright, with a value outside [0,1]. To clamp it to the valid
-range, you can use the function `glm::clamp( color, 0, 1 )`.
+range, you can use the function `glm::clamp( color, 0.0, 1.0 )`.
 
 * To iterate over the lights in `Scene::rayColor()`, you can use:
 
