@@ -38,7 +38,7 @@ Background:
 
 (FoCG,4e is *Fundamentals of Computer Graphics (4th edition)* by Steve Marschner and Peter Shirley.)
 
-If you love this assignment and want to go *beyond*, here are some free, online resources:
+If you love this topic and want to go *beyond*, here are some free, online resources:
 
 * The *Physically Based Rendering* book: <https://www.pbrt.org/>. It won an Academy Award!
 * The *Ray Tracing in One Weekend* series: <https://raytracing.github.io/>.
