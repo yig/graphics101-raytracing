@@ -38,6 +38,12 @@ Background:
 
 (FoCG,4e is *Fundamentals of Computer Graphics (4th edition)* by Steve Marschner and Peter Shirley.)
 
+If you love this assignment and want to go *beyond*, here are some free, online resources:
+
+* The *Physically Based Rendering* book: <https://www.pbrt.org/>. It won an Academy Award!
+* The *Ray Tracing in One Weekend* series: <https://raytracing.github.io/>.
+* *smallpt: Global Illumination in 99 lines of C++*: <https://www.kevinbeason.com/smallpt/> There is a presentation on the site explaining it line by line.
+
 Getting Started & Handing In:
 -----------------------------
 
@@ -211,7 +217,7 @@ direction to avoid self-intersection. To keep light from reflecting
 forever, only do this if `max_recursion > 0` and pass `max_recursion-1`
 to `rayColor()`.
 
-        * **(bonus 15 points)** Refraction. If `Material.refractive` is true, then
+        * **(bonus 5 points)** Refraction. If `Material.refractive` is true, then
 the object is translucent. Refract the vector from the eye to the
 surface position into the surface according to the index of refraction
 and call `rayColor()` recursively to find the color of light *I<sub>T</sub>* seen
@@ -240,6 +246,12 @@ If there is interest in this, I can provide additional guidance.
 You will need to create a scene that uses textures (sets
 `material.use_diffuse_texture` to true and `material.diffuse_texture` to e.g. `bricks`, and adds a `textures` property to the JSON scene,
 e.g. `textures = { 'bricks': 'path/to/bricks.png' }`).
+    
+    * Cylinder and cone: The end cap texture coordinates should map the object-space xy-plane unit square [-1,1] to the texture coordinates' [0,1] square.
+    
+    * Plane: The plane should map the object-space xy-plane unit square [-1,1] to the texture coordinates' [0,1] square. The texture coordinates elsewhere should repeat modulo.
+    
+    * Cube: Each face should map to the texture coordinates' [0,1] square. The orientation does not matter.
 
 The Code
 --------
