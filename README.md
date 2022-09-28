@@ -62,6 +62,8 @@ also revisit `Shape::rayIntersect()` to fill out `Intersection.position` and
 
 * Check your work with the [autograder](https://github.com/yig/graphics101-raytracing-autograder).
 
+* All of the lighting code you write depends on computing correct normals in your shapes. You can visualize your normals by writing `return 0.5*( normalize(closestIntersection( ray ).normal) + 1.0 );` as the first line of `Scene::rayColor()` and comparing your output to the `*-normals.png` images in the `examples/` directory.
+
 * Copy the latest autograder output (`.html` file and associated directory) into a new `output/` subdirectory.
 
 * Create a `.json` scene yourself. It can be the one you made for your raycaster with updated materials or an entirely new scene. Copy it and a `.png` rendering of it into the `output/` subdirectory as well.
