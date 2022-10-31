@@ -236,7 +236,7 @@ should cast less of a shadow. If the shadow ray hits a refractive
 object, use the object's refractive color instead of a 0 or 1 for
 *S<sub>L</sub>*.
 
-* **(bonus 20 points)** Texture mapping. To do this you do two things. In
+* **(bonus 10 points)** Texture mapping. To do this you do two things. In
 `Shape::rayIntersect()`, fill out `Intersection.texCoord` with explicit 2D
 coordinates (numbers between 0 and 1) that parameterize the shape. In
 `Scene::rayColor()`, if `material.use_diffuse_texture` is true, get the
